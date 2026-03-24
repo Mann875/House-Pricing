@@ -1,9 +1,9 @@
 # House-Pricing
 
-House Prices — Advanced Regression Techniques
+# House Prices — Advanced Regression Techniques
 A end-to-end machine learning project for predicting residential home sale prices in Ames, Iowa. Built on the classic Kaggle House Prices competition dataset, the project walks through every stage of the data science workflow: exploratory analysis, preprocessing pipelines, feature engineering, model tuning, and ensemble stacking.
 
-##Dataset Overview
+## Dataset Overview
 The dataset describes the sale of individual residential properties in Ames, Iowa between 2006 and 2010. It contains 79 explanatory variables covering nearly every aspect of a home.
 Split      Rows      Columns  
 Train      1,460     81 (incl. SalePrice)
@@ -18,7 +18,7 @@ Min              $34,900
 Max              $755,000
 The target is right-skewed and is log-transformed prior to modelling to better satisfy regression assumptions.
 
-##Exploratory Data Analysis
+## Exploratory Data Analysis
 The notebook answers seven key analytical questions using interactive Plotly visualisations:
 
 Distribution of dwelling types and their relationship to sale prices
@@ -31,14 +31,14 @@ Year-over-year price trends via box plots and average overlays
 
 Missing value analysis is also performed, with scrollable HTML tables used to inspect null counts and their percentages across all features.
 
-##Preprocessing Pipeline
+## Preprocessing Pipeline
 A reproducible sklearn pipeline is built with ColumnTransformer to ensure consistent transformations are applied to both train and test sets:
 
 Numerical features → SimpleImputer (mean strategy) → StandardScaler
 Categorical features → SimpleImputer (most frequent strategy) → OneHotEncoder
 
 
-##Feature Engineering
+## Feature Engineering
 A custom FunctionTransformer creates the following derived features before the preprocessing pipeline:
 New Feature                  Description
 PropertyAge                  YrSold − YearBuilt
@@ -52,7 +52,7 @@ MoSold_cat                   Month sold cast as categorical
 YearBuilt_cat                Year built cast as categorical
 MSSubClass_cat               Dwelling type code cast as categorical
 
-##Models Trained
+## Models Trained
 All models are tuned using GridSearchCV with KFold cross-validation and evaluated with RMSE on a held-out 20% validation split.
 Model                                              Notes
 Linear Regression                                  Baseline
@@ -66,7 +66,7 @@ PCA — preprocessed features reduced to components explaining 95% of variance
 Feature Engineering (FE) — enriched features (submitted)
 
 
-##Ensemble Methods
+## Ensemble Methods
 Two ensemble strategies are applied on top of the individually tuned models:
 1. Simple Average Ensemble
 Predictions from Random Forest, XGBoost, and MLP are averaged:
@@ -74,14 +74,14 @@ pythony_avg = (y_rf + y_xgboost + y_mlp) / 3
 2. Stacking (StackingRegressor)
 The three base models feed into a meta-learner. The meta-model is itself tuned via GridSearchCV, with candidates including MLP, Linear Regression, and XGBoost. The best meta-model is selected automatically and used for the final submission.
 
-##Getting Started
+## Getting Started
 Prerequisites
 bashpip install pandas numpy scikit-learn xgboost plotly scipy jupyter
 Run the Notebook
 bashjupyter notebook Untitled.ipynb
 Make sure train.csv, test.csv, and data_description.txt are in the same directory as the notebook.
 
-##Tech Stack
+## Tech Stack
 Library                    Purpose
 pandas / numpy             Data manipulation
 plotly                     Interactive visualisations
@@ -89,5 +89,5 @@ scipy                      Statistical analysis & distribution fitting
 scikit-learn               Pipelines, preprocessing, models, tuning
 xgboost                    Gradient boosting regressor
 
-Data Source  
+## Data Source  
 Kaggle — House Prices: Advanced Regression Techniques
